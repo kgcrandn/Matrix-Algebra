@@ -1,0 +1,207 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amsmath}
+\begin{document}
+\title{Matrix Algegba}
+\author{kgc}
+\maketitle
+
+\section{Basic Notation}
+Matrx $X_{mn}$ means X has m rows and n columns.
+
+Square matrix(m == n):
+\[
+K_{22} = \begin{pmatrix}
+
+k_{11} & k_{12} \\
+
+k_{21} & k_{22}
+
+\end{pmatrix}
+\]
+Rectangular matrix:
+\[
+R_{23} = \begin{pmatrix}
+
+r_{11} & r_{12} & r_{13} \\
+
+r_{21} & r_{22} & r_{23}
+
+\end{pmatrix}
+\]
+
+
+A general matrix:
+\[
+\text{A} = \begin{pmatrix}
+
+a_{11} & a_{12} & \cdots & a_{1n} \\
+
+a_{21} & a_{22} & \cdots & a_{2n} \\
+
+\vdots & \vdots & \ddots & \vdots \\
+
+a_{m1} & a_{m2} & \cdots & a_{mn}
+
+\end{pmatrix}
+\]
+
+The main diagonal of a matrix $A_{nm}$ is the entries $a_{ij}$where i == j.\\
+Examples:
+\[
+\text{A} = \begin{pmatrix}
+1 & 0 & 0 \\
+
+0 & 1 & 0 \\
+
+0 & 0 & 1
+\end{pmatrix}
+%
+\medspace\text{B} = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 
+\end{pmatrix}
+%
+\medspace\text{C} = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{pmatrix}
+\]
+\section{Basic Algebra}
+Add by another matrix:
+\begin{equation}
+ \begin{pmatrix}
+ a_{11} & a_{12} & a_{13} \\
+ a_{21} & a_{22} & a_{23} \\
+\end{pmatrix}
+\begin{pmatrix}
+ b_{11} & b_{12} & b_{13} \\
+ b_{21} & b_{22} & b_{23} \\
+\end{pmatrix}
+\Rightarrow
+\begin{pmatrix}
+ a_{11} + b_{11} & a_{12} + b_{12} & a_{13} + b_{13} \\
+ a_{21} + b_{21} & a_{22} + b_{22} & a_{23} + b_{23} \\
+\end{pmatrix}
+\end{equation}
+
+Multiply by scaler:
+\begin{equation}
+ \text{k}\begin{pmatrix}
+ a_{11} & a_{12} & a_{13} \\
+ a_{21} & a_{22} & a_{23} \\
+\end{pmatrix}
+\Rightarrow
+\begin{pmatrix}
+ ka_{11} & ka_{12} & ka_{13} \\
+ ka_{21} & ka_{22} & ka_{23} \\
+\end{pmatrix}
+\end{equation}
+
+Mulitply by another Matrix:
+\begin{equation}
+ \begin{pmatrix}
+ a_{11} & a_{12} \\
+ a_{21} & a_{22} \\
+\end{pmatrix}
+\begin{pmatrix}
+ b_{11} & b_{12} & b_{13} \\
+ b_{21} & b_{22} & b_{23} \\
+\end{pmatrix}
+\Rightarrow
+\begin{pmatrix}
+ a_{11}b_{11} + a_{12} b_{21} & a_{11}b_{12} + a_{12}b_{22} & a_{11}b_{13} + a_{12}b_{23} \\
+ a_{21}b_{11} + a_{22} b_{21} & a_{21}b_{12} + a_{22}b_{22} & a_{21}b_{23} + a_{22}b_{23}  \\
+\end{pmatrix}
+\end{equation}
+If $A_{mn} = B_{mk}C_{kn}$, for entry $a_{ij}$ in A:
+\[
+	a_{ij} = \sum_{x=1}^k b_{ix}c_{xj}
+\]
+Question: Prove the associative low for matrix multiplication. That is:$$A_{mn}B_{nq}C_{qp} = A_{mn}(B_{nq}C_{qp})$$
+Prove:$$[ABC]_{ij} = \sum_{x=1}^q [AB]_{ix}c_{xj} = \sum_{x=1}^q \sum_{y=1}^n a_{iy}b_{yx}c_{xp} =^* \sum_{y=1}^n a_{iy}[BC]_{yj} = [A(BC)]_{ij}$$
+* why this translation must be right
+\section{Some Special Matrixes}
+Zero Matrix: write as \emph{0}
+Identify Matrix: write as \emph{I}
+$$AI = IA = $$
+Diagonal Matrix: has only elements on the main diagonal, and zero everywhere else.
+\[
+\begin{pmatrix}
+d1 & 0 & 0 \\
+0 & d2 & 0 \\
+0 & 0 & d3 
+\end{pmatrix}
+\]
+Banded Matrix or called Tridiagonal Matrix: one main diagonal and two bands around it, up and down.
+\[
+\begin{pmatrix}
+d1 & d2 & 0 & 0 \\
+d3 & d4 & d5 & 0 \\
+0 & d6 & d7 & d8 \\
+0 & 0 & d9 & d10
+\end{pmatrix}
+\]
+Up Triangular Matrix:
+\[
+\begin{pmatrix}
+d1 & d2 & d3 & d9 \\
+0 & d4 & d5 & d11 \\
+0 & 0& d7 & d8 \\
+0 & 0 & 0 & d10
+\end{pmatrix}
+\]
+Low Triangular Matrix
+\[
+\begin{pmatrix}
+d1 & 0 & 0 \\
+d5 & d2 & 0 \\
+d7 & d4 & d3 
+\end{pmatrix}
+\]
+\section{Transpose and Inverses}
+Transpose: entry $a_{ij}^T$ in $A^T$ is entry $a_{ji}$ in A\\
+Some equation:
+\begin{itemize}
+\item[-] $(A^T)^T = A$
+\item[-] $(A + B)^T = A^T + A^T$
+\item[-] $(AB)^T = B^TA^T$
+\end{itemize}
+Some special matrices:
+\begin{itemize}
+\item[-] symmetric matrix $A^T = A$
+\item[-] skew-symmetric matrix$A^T = -A$\\
+So the diagonal elements must be $\mathbf{0}$.
+\end{itemize}
+Inner Products \& Outer Products: both involve to vectors\\
+\[U = \begin{pmatrix} u1 \\ u2 \\ u3 \end{pmatrix}
+%
+\quad V = \begin{pmatrix} v1 \\ v2 \\ v3 \end{pmatrix}\]
+\textbf{Inner Products}:
+\begin{equation}
+V^TU = \begin{pmatrix} v1 & v2 & v3 \end{pmatrix} \begin{pmatrix} u1 \\ u2 \\ u3 \end{pmatrix} 
+ = v1*u1 + v2*u2 + v3*u3
+\end{equation}
+Some relative concept:
+\begin{itemize}
+\item[-] U and V is orthogonal if $U^TV = \mathbf{0}$
+\item[-] norm. \begin{equation}\begin{Vmatrix}U\end{Vmatrix} = (U^TU)^{1/2}\end{equation}
+A vector is normalized if $\begin{Vmatrix}U\end{Vmatrix} $ = 1.
+\item[-] If U and V are orthogonal and both are normalized, U and V are orthonormal.
+\end{itemize}
+\section{Key Words}	
+	diagonal, commute under multiplication, associative low
+\section{Some proof}
+- $(AB)^T = B^TA^T$ \\
+\begin{equation}
+\begin{split}
+|B^TA^T|_{ij} 
+& = \sum_{k=1}^n b^T_{ik}a^T_{kj} \\
+& = \sum_{k=1}^n b_{ki}a{jk} \\
+& = \sum_{k=1}^n a_{jk}b_{kj} \\
+& = |AB|_{ji} = |AB|^T_{ij}
+\end{split}
+\end{equation}
+\end{document}
